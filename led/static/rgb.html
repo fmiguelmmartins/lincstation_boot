@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>灯带控制</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>灯带控制</h1>
+    <form id="controlForm">
+        <label for="mode">模式:</label>
+        <select id="mode" name="mode">
+            <option value="off">关闭</option>
+            <option value="normal">正常</option>
+            <option value="breath">呼吸</option>
+            <option value="loop">循环</option>
+        </select>
+
+        <label for="light">亮度:</label>
+        <input type="number" id="light" name="light" min="1" max="255">
+
+        <label for="color0">颜色0:</label>
+        <input type="text" id="color0" name="color0">
+
+        <label for="color1">颜色1:</label>
+        <input type="text" id="color1" name="color1">
+
+        <button type="button" class="button" onclick="sendControlRequest()">确认</button>
+    </form>
+
+    <div id="resultContainer" style="display: none;">
+        <h2>当前状态</h2>
+        <p id="modeResult"></p>
+        <p id="lightResult"></p>
+        <p id="color0Result"></p>
+        <p id="color1Result"></p>
+    </div>
+</div>
+
+<script>
+    function sendControlRequest() {
+        var form = document.getElementById('controlForm');
+        var formData = new FormData(form);
+
+        fetch('/rgb/mode', {
+            method: 'POST',
+            body: formData
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('请求失败');
+                }
+            })
+            .then(function (data) {
+                console.log(data);
+                getCurrentRGBMode()
+            })
+            .catch(function (error) {
+                console.error(error);
+                alert('请求出错');
+            });
+    }
+
+    function getCurrentRGBMode() {
+        fetch('/rgb/mode')
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('请求失败');
+                }
+            })
+            .then(function (data) {
+                console.log(data);
+                showResult(data);
+            })
+            .catch(function (error) {
+                console.error(error);
+                alert('请求出错');
+            });
+    }
+
+    getCurrentRGBMode()
+
+    function showResult(data) {
+        var resultContainer = document.getElementById('resultContainer');
+        var modeResult = document.getElementById('modeResult');
+        var lightResult = document.getElementById('lightResult');
+        var color0Result = document.getElementById('color0Result');
+        var color1Result = document.getElementById('color1Result');
+
+        modeResult.textContent = '模式: ' + data.Mode;
+        lightResult.textContent = '亮度: ' + data.Light;
+        color0Result.textContent = '颜色0: ' + data.Color0;
+        color1Result.textContent = '颜色1: ' + data.Color1;
+
+        resultContainer.style.display = 'block';
+    }
+</script>
+</body>
+</html>

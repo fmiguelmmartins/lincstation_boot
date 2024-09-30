@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Disk State</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>HwPath</th>
+    <th>DiskPath</th>
+    <th>Description</th>
+    <th>Health</th>
+    <th>Temperature</th>
+    <th>SlotName</th>
+  </tr>
+  </thead>
+  <tbody id="diskTableBody">
+  </tbody>
+</table>
+
+<script>
+  // 使用 JavaScript 发起请求获取接口数据
+  fetch('/disk/state')
+          .then(response => response.json())
+          .then(data => {
+            // 将接口返回的数据动态生成表格行
+            const diskTableBody = document.getElementById('diskTableBody');
+            data.DiskList.forEach(disk => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                        <td>${disk.HwPath}</td>
+                        <td>${disk.DiskPath}</td>
+                        <td>${disk.Description}</td>
+                        <td>${disk.Health}</td>
+                        <td>${disk.Temperature}</td>
+                        <td>${disk.SlotName}</td>
+                    `;
+              diskTableBody.appendChild(row);
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+</script>
+</body>
+</html>

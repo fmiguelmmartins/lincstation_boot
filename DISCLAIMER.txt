@@ -1,0 +1,11 @@
+DISCLAIMER OF LIABILITY
+
+The software provided is free and open-source, distributed in the hope that it will be useful. However, it is provided "as-is" without any express or implied warranties. The author(s) disclaim any responsibility for any potential issues or damages arising from the use of this software, whether direct, indirect, incidental, or consequential.
+
+By using this software, you agree that the author(s) are not liable for any harm, including but not limited to, data loss, device malfunction, or any other negative consequence. You assume all risks associated with using this software.
+
+NO WARRANTY
+
+This software is provided without any warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, or non-infringement. The author(s) do not guarantee that the software will be error-free or operate without interruption.
+
+The entire risk as to the quality and performance of the software lies with you. Should the software prove defective, you assume the cost of all necessary servicing, repair, or correction.

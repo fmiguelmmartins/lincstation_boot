@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Navigation</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Navigation</h1>
+  <button class="button" onclick="redirectTo('/led')">LED控制测试</button>
+  <button class="button" onclick="redirectTo('/state')">硬盘状态</button>
+  <button class="button" onclick="redirectTo('/switch')">LED开关</button>
+  <button class="button" onclick="redirectTo('/rgb')">RGB灯条</button>
+</div>
+
+<script>
+  function redirectTo(path) {
+    window.location.href = path;
+  }
+</script>
+</body>
+</html>

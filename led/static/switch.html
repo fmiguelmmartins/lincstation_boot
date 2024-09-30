@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toggle LED Switch</title>
+</head>
+<body>
+<h1>Toggle LED Switch</h1>
+<label for="toggle">LED Switch:</label>
+<input type="checkbox" id="toggle">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggleSwitch = document.getElementById('toggle');
+
+    // 监听开关按钮的变化事件
+    toggleSwitch.addEventListener('change', function() {
+      var enabled = toggleSwitch.checked;
+      const params = new URLSearchParams();
+      params.append('enabled', enabled);
+
+      // 发送 POST 请求来设置开关状态
+      fetch('/led/switch', {
+        method: 'POST',
+        body: params
+      })
+              .then(function(response) {
+                if (response.ok) {
+                  console.log(response);
+                  // 处理成功响应，可根据需要进行操作
+                } else {
+                  throw new Error('请求失败');
+                }
+              })
+              .catch(function(error) {
+                console.error(error);
+                // 处理错误响应，可根据需要进行操作
+              });
+    });
+
+    // 初始化开关按钮状态，发送 GET 请求来获取开关状态
+    fetch('/led/switch')
+            .then(function(response) {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error('请求失败');
+              }
+            })
+            .then(function(data) {
+              console.log(data);
+              // 处理成功响应，可根据需要进行操作
+              toggleSwitch.checked = data.enabled;
+            })
+            .catch(function(error) {
+              console.error(error);
+              // 处理错误响应，可根据需要进行操作
+            });
+  });
+</script>
+</body>
+</html>

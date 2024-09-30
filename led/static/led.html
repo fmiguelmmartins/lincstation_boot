@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Control</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button-off {
+            background-color: #a0a0a0;
+            color: white;
+        }
+
+        .button-normal {
+            background-color: #22a822;
+            color: white;
+        }
+
+        .button-warning {
+            background-color: #ec2020;
+            color: white;
+        }
+
+        .button-alert {
+            background-color: #f5c717;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Target</th>
+        <th>Off</th>
+        <th>Normal</th>
+        <th>Warning</th>
+        <th>Alert</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>power</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('power', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('power', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('power', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('power', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>network</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('network', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('network', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('network', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('network', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>hhd0</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('hhd0', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('hhd0', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('hhd0', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('hhd0', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>hhd1</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('hhd1', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('hhd1', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('hhd1', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('hhd1', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>nvme0</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('nvme0', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('nvme0', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('nvme0', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('nvme0', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>nvme1</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('nvme1', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('nvme1', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('nvme1', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('nvme1', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>nvme2</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('nvme2', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('nvme2', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('nvme2', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('nvme2', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <tr>
+        <td>nvme3</td>
+        <td>
+            <button class="button button-off" onclick="sendLedOpt('nvme3', 'off')">Off</button>
+        </td>
+        <td>
+            <button class="button button-normal" onclick="sendLedOpt('nvme3', 'normal')">Normal</button>
+        </td>
+        <td>
+            <button class="button button-warning" onclick="sendLedOpt('nvme3', 'warning')">Warning</button>
+        </td>
+        <td>
+            <button class="button button-alert" onclick="sendLedOpt('nvme3', 'alert')">Alert</button>
+        </td>
+    </tr>
+    <!-- Add more rows for other targets -->
+    </tbody>
+</table>
+
+<script>
+    function sendLedOpt(target, state) {
+        const url = '/led/opt';
+        const params = new URLSearchParams();
+        params.append('targetLed', target);
+        params.append('state', state);
+
+        fetch(url, {
+            method: 'POST',
+            body: params
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
+                // Handle the response if needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+</body>
+</html>
